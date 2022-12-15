@@ -1,4 +1,8 @@
-﻿internal class Program
+﻿using Microsoft.VisualBasic;
+using System.Collections.ObjectModel;
+using System.Linq;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
@@ -12,27 +16,19 @@
         List<int> newCollection = new List<int>();
 
         Console.WriteLine("Первая коллекция");
-
         CreateCollection(firstCollection, firstCollectionLength, minNumberValue, maxNumberValue);
 
         Console.WriteLine("\nВторая коллекция");
-
         CreateCollection(secondCollection, secondCollectionLength, minNumberValue, maxNumberValue);
 
-        Console.WriteLine("\nПервая коллекция после отсеивания");
+        Console.WriteLine("\nНовая коллекция");
+        CreateNewCollection(firstCollection, newCollection);
+        CreateNewCollection(secondCollection, newCollection);
 
-        RemoveSameNumbersInCollection(firstCollection);
+        newCollection.Sort();
 
-        Console.WriteLine("\nВторая коллекция после отсеивания");
-
-        RemoveSameNumbersInCollection(secondCollection);
-
-        newCollection.AddRange(firstCollection);
-        newCollection.AddRange(secondCollection);
-
-        Console.WriteLine("\nИтоговая коллекция");
-
-        RemoveSameNumbersInCollection(newCollection);
+        foreach (int number in newCollection)
+            Console.Write(number + " ");
     }
 
     static void CreateCollection(List<int> collection, int collectionLength, int minValue, int maxValue)
@@ -49,35 +45,20 @@
         foreach (int number in collection)
             Console.Write(number + " ");
 
-        collection.Sort();
-
         Console.WriteLine();
     }
 
-    static void RemoveSameNumbersInCollection(List<int> collection)
+    static void CreateNewCollection(List<int> collection, List<int> newCollection)
     {
         for (int i = 0; i < collection.Count; i++)
         {
-            int number = collection[i];
-
-            for (int j = i + 1; j < collection.Count; j++)
+            if (newCollection.Contains(collection[i]) == false)
             {
-                if (number == collection[j])
-                {
-                    collection.Remove(collection[j]);
-                    j--;
+                newCollection.Add(collection[i]);
 
-                    if (i >= 0)
-                        i--;
-                }
+                if (i >= 0)
+                    i--;
             }
         }
-
-        collection.Sort();
-
-        foreach (int number in collection)
-            Console.Write(number + " ");
-
-        Console.WriteLine();
     }
 }
