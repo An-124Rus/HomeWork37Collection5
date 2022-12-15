@@ -25,10 +25,7 @@ internal class Program
         CreateNewCollection(firstCollection, newCollection);
         CreateNewCollection(secondCollection, newCollection);
 
-        newCollection.Sort();
-
-        foreach (int number in newCollection)
-            Console.Write(number + " ");
+        ShowCollection(newCollection);
     }
 
     static void CreateCollection(List<int> collection, int collectionLength, int minValue, int maxValue)
@@ -42,8 +39,7 @@ internal class Program
             collection.Add(number);
         }
 
-        foreach (int number in collection)
-            Console.Write(number + " ");
+        ShowCollection(collection);
 
         Console.WriteLine();
     }
@@ -53,12 +49,15 @@ internal class Program
         for (int i = 0; i < collection.Count; i++)
         {
             if (newCollection.Contains(collection[i]) == false)
-            {
                 newCollection.Add(collection[i]);
-
-                if (i >= 0)
-                    i--;
-            }
         }
+    }
+
+    static void ShowCollection(List<int> collection)
+    {
+        collection.Sort();
+
+        foreach (int number in collection)
+            Console.Write(number + " ");
     }
 }
