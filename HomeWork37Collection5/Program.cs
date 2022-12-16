@@ -1,51 +1,53 @@
-﻿internal class Program
+﻿using System;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
         int minNumberValue = 0;
         int maxNumberValue = 10;
-        int firstCollectionLength = 5;
-        int secondCollectionLength = 5;
+        int firstArrayLength = 5;
+        int secondArrayLength = 5;
 
-        List<int> firstCollection = new List<int>();
-        List<int> secondCollection = new List<int>();
-        List<int> newCollection = new List<int>();
+        int[] firstArray = new int[firstArrayLength];
+        int[] secondArray = new int[secondArrayLength];
+        List<int> сollection = new List<int>();
 
-        Console.WriteLine("Первая коллекция");
-        CreateCollection(firstCollection, firstCollectionLength, minNumberValue, maxNumberValue);
+        Console.WriteLine("Первый массив");
+        CreateCollection(firstArray, firstArrayLength, minNumberValue, maxNumberValue);
 
-        Console.WriteLine("\nВторая коллекция");
-        CreateCollection(secondCollection, secondCollectionLength, minNumberValue, maxNumberValue);
+        Console.WriteLine("\nВторой массив");
+        CreateCollection(secondArray, secondArrayLength, minNumberValue, maxNumberValue);
 
-        Console.WriteLine("\nНовая коллекция");
-        CreateNewCollection(firstCollection, newCollection);
-        CreateNewCollection(secondCollection, newCollection);
-
-        ShowCollection(newCollection);
+        Console.WriteLine("\nКоллекция");
+        CreateCollection(firstArray, сollection);
+        CreateCollection(secondArray, сollection);
+        ShowCollection(сollection);
     }
 
-    static void CreateCollection(List<int> collection, int collectionLength, int minValue, int maxValue)
+    static void CreateCollection(int[] array, int arrayLength, int minValue, int maxValue)
     {
         Random random = new Random();
 
-        for (int i = 0; i < collectionLength; i++)
+        for (int i = 0; i < arrayLength; i++)
         {
             int number = random.Next(minValue, maxValue);
 
-            collection.Add(number);
+            array.SetValue(number, i);
         }
 
-        ShowCollection(collection);
+        foreach(var number in array)
+            Console.Write(number + " ");
 
         Console.WriteLine();
     }
 
-    static void CreateNewCollection(List<int> collection, List<int> newCollection)
+    static void CreateCollection(int[] array, List<int> collection)
     {
-        for (int i = 0; i < collection.Count; i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            if (newCollection.Contains(collection[i]) == false)
-                newCollection.Add(collection[i]);
+            if (collection.Contains(array[i]) == false)
+                collection.Add(array[i]);
         }
     }
 
