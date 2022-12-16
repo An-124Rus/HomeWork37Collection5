@@ -14,18 +14,18 @@ internal class Program
         List<int> сollection = new List<int>();
 
         Console.WriteLine("Первый массив");
-        CreateCollection(firstArray, firstArrayLength, minNumberValue, maxNumberValue);
+        AddValueInArray(firstArray, firstArrayLength, minNumberValue, maxNumberValue);
 
         Console.WriteLine("\nВторой массив");
-        CreateCollection(secondArray, secondArrayLength, minNumberValue, maxNumberValue);
+        AddValueInArray(secondArray, secondArrayLength, minNumberValue, maxNumberValue);
 
         Console.WriteLine("\nКоллекция");
-        CreateCollection(firstArray, сollection);
-        CreateCollection(secondArray, сollection);
+        AddValueInCollection(firstArray, сollection);
+        AddValueInCollection(secondArray, сollection);
         ShowCollection(сollection);
     }
 
-    static void CreateCollection(int[] array, int arrayLength, int minValue, int maxValue)
+    static void AddValueInArray(int[] array, int arrayLength, int minValue, int maxValue)
     {
         Random random = new Random();
 
@@ -42,7 +42,7 @@ internal class Program
         Console.WriteLine();
     }
 
-    static void CreateCollection(int[] array, List<int> collection)
+    static void AddValueInCollection(int[] array, List<int> collection)
     {
         for (int i = 0; i < array.Length; i++)
         {
