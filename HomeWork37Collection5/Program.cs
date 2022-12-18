@@ -1,23 +1,23 @@
-﻿using System;
-
-internal class Program
+﻿internal class Program
 {
     private static void Main(string[] args)
     {
-        int minNumberValue = 0;
-        int maxNumberValue = 10;
+        int minNumberValueOfFirstArray = 0;
+        int maxNumberValueOfFirstArray = 10;
+        int minNumberValueOfSecondArray = 0;
+        int maxNumberValueOfSecondArray = 8;
         int firstArrayLength = 5;
-        int secondArrayLength = 5;
+        int secondArrayLength = 4;
 
         int[] firstArray = new int[firstArrayLength];
         int[] secondArray = new int[secondArrayLength];
         List<int> сollection = new List<int>();
 
         Console.WriteLine("Первый массив");
-        AddValueInArray(firstArray, firstArrayLength, minNumberValue, maxNumberValue);
+        AddValueInArray(firstArray, minNumberValueOfFirstArray, maxNumberValueOfFirstArray);
 
         Console.WriteLine("\nВторой массив");
-        AddValueInArray(secondArray, secondArrayLength, minNumberValue, maxNumberValue);
+        AddValueInArray(secondArray, minNumberValueOfSecondArray, maxNumberValueOfSecondArray);
 
         Console.WriteLine("\nКоллекция");
         AddValueInCollection(firstArray, сollection);
@@ -25,11 +25,11 @@ internal class Program
         ShowCollection(сollection);
     }
 
-    static void AddValueInArray(int[] array, int arrayLength, int minValue, int maxValue)
+    static void AddValueInArray(int[] array, int minValue, int maxValue)
     {
         Random random = new Random();
 
-        for (int i = 0; i < arrayLength; i++)
+        for (int i = 0; i < array.Length; i++)
         {
             int number = random.Next(minValue, maxValue);
 
